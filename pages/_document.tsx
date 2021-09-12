@@ -9,12 +9,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="fa">
-        <Head>
-          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-          {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" key='viewport' />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
@@ -48,7 +43,6 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   // 2. page.getInitialProps
   // 3. app.render
   // 4. page.render
-
   // Render app and page and get the context of the page with collected side effects.
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
