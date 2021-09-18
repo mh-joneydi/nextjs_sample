@@ -1,10 +1,12 @@
+import alertReducer from 'reducers/slices/alertReducer';
 import actionTypes from "actions/types";
 import { combineReducers } from "redux"
 import userReducer from "./slices/userReducer";
 
 // combined redecucers (Root Reducer)
 const AppReducer = combineReducers ({
-    user: userReducer
+    user: userReducer,
+    alert: alertReducer
 });
 
 // when user logges out store will be cleaned up

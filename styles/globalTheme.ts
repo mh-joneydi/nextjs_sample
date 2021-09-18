@@ -188,7 +188,7 @@ const theme = createTheme({
           '.MuiFormControl-root:not([dir="ltr"]) legend' : {
             textAlign: 'right'
           },
-          '#root': {
+          '#__next': {
             height: '100vh',
             width: '100%',
             display: 'flex',

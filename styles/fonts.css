@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: 100;
+    src: url(/assets/fonts/Yekan-Bakh-Thin.woff) format('woff');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-style: normal;
+    font-weight: normal;
+    src: url(/assets/fonts/Yekan-Bakh-Regular.woff) format('woff');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-weight: 400;
+    font-style: normal;
+    src: url(/assets/fonts/Yekan-Bakh-Medium.woff) format('woff');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-weight: 700;
+    font-style: normal;
+    src: url(/assets/fonts/Yekan-Bakh-Bold.woff) format('woff');
+}
+@font-face {
+    font-family: YekanBakh;
+    font-weight: 800;
+    font-style: normal;
+    src: url(/assets/fonts/Yekan-Bakh-Heavy.woff) format('woff');
+}

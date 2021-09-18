@@ -1,4 +1,4 @@
-import { Action } from 'store';
+import { TAction } from 'store';
 import actionTypes from 'actions/types';
 
 interface IUserInfo {
@@ -7,12 +7,10 @@ interface IUserInfo {
     ImageName: string | null,
 }
 
-
 interface IUserReducerState {
     isLogin: boolean,
     userInfo: IUserInfo | null
 }
-
 
 export interface IUserLoginPayload {
     userInfo?: IUserInfo
@@ -23,7 +21,7 @@ const initialState: IUserReducerState = {
     userInfo: null
 }
 
-type TUserReducerActions = Action<actionTypes.LOGIN, IUserLoginPayload> | Action<actionTypes.LOGOUT>;
+type TUserReducerActions = TAction<actionTypes.LOGIN, IUserLoginPayload> | TAction<actionTypes.LOGOUT>;
 
 export default function userReducer(state = initialState , action: TUserReducerActions) {
     switch(action.type) {

@@ -1,5 +1,6 @@
 import { ButtonProps, createTheme, makeStyles, MuiThemeProvider, useTheme, CircularProgress } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import globalTheme from "styles/globalTheme";
 
 const useStyle = makeStyles<any>( theme=> ({
     disabled: ({color,variant}: BtnProps)=>{
@@ -45,14 +46,13 @@ const Btn: React.FC<BtnProps> = (props) => {
     endIcon,
     startIcon,
     ...otherProps} = props,
-    theme = useTheme(),
     customTheme = createTheme({ 
-        ...theme,
+        ...globalTheme,
         palette: { 
-            ...theme.palette,
+            ...globalTheme.palette,
             primary: { 
-                main: color==='default'? (otherProps.variant === 'contained' ? '#fff': theme.palette.text.secondary) : theme.palette[color].main ,
-                contrastText: color==='default'? theme.palette.text.secondary :'#fff'
+                main: color==='default'? (otherProps.variant === 'contained' ? '#fff': globalTheme.palette.text.secondary) : globalTheme.palette[color].main ,
+                contrastText: color==='default'? globalTheme.palette.text.secondary :'#fff'
             }
     }});
 
