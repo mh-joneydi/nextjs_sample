@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk'
 import reducers from 'reducers'
 import actionTypes from 'actions/types'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import globalStorage from 'lib/globalStorage'
 
 let store: any;
 
@@ -17,8 +18,8 @@ function initStore(initialState?: PreloadedState<any>) {
 }
 
 function firstInitStore(initialState: PreloadedState<any>) {
-    if(typeof window !== 'undefined') {
-        initialState = { ...initialState,  user: { inLogin: true, userInfo: { Name: 'akbar' } } } 
+    if(typeof window !== 'undefined' && globalStorage.getItem('USER_TOKEN')) {
+      initialState = { ...initialState,  user: { isLogin: true, userInfo: globalStorage.getItem('USER_INFO') } } 
     }
     return initStore(initialState)
 }

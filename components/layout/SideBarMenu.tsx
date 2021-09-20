@@ -2,12 +2,12 @@ import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@materia
 import { memo, useMemo } from "react";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store";
-// import { setLogout } from "store/actions";
-// import { useLocation } from "react-router-dom";
+import { RootState, useAppSelector } from "store";
+import { logout } from "actions";
+import Router from "next/router";
 
 export interface SideBarMenuProps {
-    
+    onClose: Function
 }
 
 export interface IMenuItem {
@@ -50,18 +50,29 @@ const useStyle = makeStyles(theme=> ({
 }));
 
 
-const SideBarMenu: React.FC<SideBarMenuProps> = () => {
+const SideBarMenu: React.FC<SideBarMenuProps> = ({ onClose }) => {
     const classes= useStyle(),
-    dispatcher = useDispatch();
+    dispatch = useDispatch(),
+    isUserLogin = useAppSelector( state=> state.user.isLogin );
+
+    function setLogout() {
+        onClose();
+        dispatch(logout());
+        Router.replace('/');
+    }
 
     return (  
         <List className={classes.root}>
-            <ListItem button onClick={()=>{}} classes={{ selected: classes.selectedItem, button: classes.itemButton }}>
-                <ListItemIcon classes={{ root: classes.listIconRoot }}>
-                    <ExitToAppRoundedIcon />
-                </ListItemIcon>
-                <ListItemText primary="خروج از حساب کاربری" />
-            </ListItem>
+            {
+                isUserLogin&& (
+                    <ListItem button onClick={setLogout} classes={{ selected: classes.selectedItem, button: classes.itemButton }}>
+                        <ListItemIcon classes={{ root: classes.listIconRoot }}>
+                            <ExitToAppRoundedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="خروج از حساب کاربری" />
+                    </ListItem>
+                )
+            }
         </List>
     );
 };

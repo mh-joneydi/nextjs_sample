@@ -1,10 +1,20 @@
 import { TAction } from 'store';
 import actionTypes from 'actions/types';
 
-interface IUserInfo {
-    Name: string,
-    UserName: string,
-    ImageName: string | null,
+export interface IUserInfo {
+    age: string
+    bio: string
+    citizenCode: string
+    email: string
+    firstName: string
+    friends: string
+    imageName: string
+    inventory: string
+    lastName: string
+    phoneNumber: string
+    unreadStatements: string
+    userId: string
+    userName: string
 }
 
 interface IUserReducerState {
@@ -12,23 +22,23 @@ interface IUserReducerState {
     userInfo: IUserInfo | null
 }
 
-export interface IUserLoginPayload {
-    userInfo?: IUserInfo
-}
+// export interface IUserLoginPayload {
+//     userInfo?: IUserInfo
+// }
 
 const initialState: IUserReducerState = {
     isLogin: false,
     userInfo: null
 }
 
-type TUserReducerActions = TAction<actionTypes.LOGIN, IUserLoginPayload> | TAction<actionTypes.LOGOUT>;
+type TUserReducerActions = TAction<actionTypes.LOGIN, IUserInfo> | TAction<actionTypes.LOGOUT>;
 
 export default function userReducer(state = initialState , action: TUserReducerActions) {
     switch(action.type) {
         case actionTypes.LOGIN:
             return { 
                 isLogin: true,
-                ...action.payload 
+                userInfo: action.payload 
             };
         case actionTypes.LOGOUT:
             return initialState;

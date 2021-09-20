@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import { showAlert } from 'actions'
+import { openDialog, showAlert } from 'actions'
 import React from 'react'
 import { useAppDispatch } from 'store'
 import Btn from './customized/Btn'
@@ -12,7 +12,7 @@ function Test() {
             <Text color='primary.main'>محمد حسین جنیدی</Text>
             <br/>
             <br/>
-            <Btn variant='contained'  color='warning' onClick={()=> { dispatch( showAlert({ message: 'سلام رفیق خوش اومدی' }) ) }} >سلام خدمت همه دوستان</Btn>
+            <Btn variant='contained'  color='warning' onClick={()=> { dispatch( openDialog({title: 'test', body: 'tesssst'}) ) }} >سلام خدمت همه دوستان</Btn>
         </div>
     )
 }

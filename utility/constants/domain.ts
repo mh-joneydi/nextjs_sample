@@ -1,7 +1,7 @@
-export const BASE_URL = 'http://postpannel.mteamtest.ir';
+export const BASE_URL = 'https://apintc.c1station.ir';
 
 const baseURLs = {
-    API: `${BASE_URL}/Api`,
+    API: `${BASE_URL}/api`,
     UserImage: `${BASE_URL}/Images/Users`
 }
 

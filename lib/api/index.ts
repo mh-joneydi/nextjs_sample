@@ -1,14 +1,20 @@
 import { dispatch } from "pages/_app";
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookie, { getCookie } from 'lib/functions/cookie';
-import cookiesList from 'lib/constants/cookiesList';
-import baseURLs from "lib/constants/domain";
+import cookiesList from 'utility/constants/cookiesList';
+import baseURLs from "utility/constants/domain";
+
+interface IResponse<TDataType = any> {
+    errorId: number
+    result: TDataType
+    title: string
+}
 
 // seccess request interceptor
 function onRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     return {
         ...config,
-        headers: { ...config.headers, Token: getCookie(cookiesList.User)?.Token }
+        headers: { Token: getCookie(cookiesList.User)?.Token, ...config.headers }
     }
 }
 
@@ -19,7 +25,7 @@ function onRequestError(error: any) {
 }
 
 // seccess response interceptor
-function onResponse(response: AxiosResponse ) {
+function onResponse(response: AxiosResponse<IResponse> ) {
     // error handling with success status, we can use dispatch here
     return response;
 }
@@ -35,19 +41,24 @@ function onResponseError(error: any) {
  * 
  * import APICall from 'lib/api';
  * 
- * await APICall.get<data Type>('requestURL', { ...options }) 
- * // or
  * await APICall({ method: 'get', url: 'requestURL', ...options })
  */
-const APICall = axios.create({
+const axiosInstance = axios.create({
     baseURL: baseURLs.API,
 });
 
-if( typeof window !== undefined ) {
+if( typeof window !== 'undefined' ) {
     // config interceptors for client-side call api
-    APICall.interceptors.response.use(onResponse, onResponseError);
-    APICall.interceptors.request.use(onRequest, onRequestError);
+    axiosInstance.interceptors.response.use(onResponse, onResponseError);
+    axiosInstance.interceptors.request.use(onRequest, onRequestError);
 }
 
+const APICall = function<DataType = any> ( config: AxiosRequestConfig) {
+    return new Promise<AxiosResponse<IResponse<DataType>>>((resolvation, rejection)=> {
+        axiosInstance(config)
+        .then( (res: AxiosResponse<IResponse> )=> resolvation(res))
+        .catch( (err: AxiosError<IResponse>)=> { rejection(err) })
+    })
+}
 
 export default APICall;

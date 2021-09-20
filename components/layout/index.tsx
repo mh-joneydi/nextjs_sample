@@ -53,7 +53,7 @@ const Layout: React.FC<WithWidthProps> = ({ width,children }) => {
             { 
                 isWidthUp('md', width!) ? (
                     <Grid item md={3} lg={2} className={classes.layout__desktopSidebar}>
-                        <SideBar />
+                        <SideBar onClose={drawerToggler} />
                     </Grid>
                 ) : (
                     <MobileSideBar open={openDrawer} onClose={drawerToggler} />

@@ -13,14 +13,14 @@ export interface IAlertPayload {
 };
 
 export interface IAlertInfo extends IAlertPayload {
-    readonly key?: number
+    readonly key: number
 }
 
 export type TAlertReducerState = Array<IAlertInfo>
 
 type TAlertActions = TAction<actionTypes.SHOW_ALERT, IAlertPayload> | TAction<actionTypes.CLOSE_ALERT>
 
-function alertReducer (state: TAlertReducerState = [] , action: TAlertActions) {
+export default function alertReducer (state: TAlertReducerState = [] , action: TAlertActions) {
     switch(action.type) {
         case actionTypes.SHOW_ALERT:
             return [...state, { ...action.payload, key: new Date().getTime() }];
@@ -30,5 +30,3 @@ function alertReducer (state: TAlertReducerState = [] , action: TAlertActions) {
             return state;
     }
 }
-
-export default alertReducer;

@@ -9,6 +9,7 @@ import { AppDispatch, useStore } from 'store';
 import globalTheme from 'styles/globalTheme';
 import 'styles/fonts.css'
 import GlobalAlerts from 'components/globals/GlobalAlerts';
+import GlobalDialog from 'components/globals/GlobalDialog';
 
 let dispatch: AppDispatch;
 
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
         <GlobalAlerts />
+        <GlobalDialog />
       </ThemeProvider>
     </Provider>
   )

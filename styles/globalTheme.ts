@@ -211,13 +211,18 @@ const theme = createTheme({
           },
           '*::-webkit-scrollbar-thumb:active': {
             backgroundColor: alpha(grey[800], 0.4 )
+          },
+          'input::-webkit-outer-spin-button,input::-webkit-inner-spin-button': {
+            '-webkit-appearance': 'none',
+            margin: 0
+          },
+          'input[type=number]': {
+           '-moz-appearance': 'textfield'
           }
         }
       }
     },
 })
 
-console.log('defalut: ',defaultTheme)
-console.log('costomized: ', theme)
 
 export default responsiveFontSizes(theme);

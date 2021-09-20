@@ -1,10 +1,11 @@
 import { alpha, Avatar, Grid, makeStyles } from "@material-ui/core";
 import Text from "components/customized/Text";
-import { useEffect, useMemo } from "react";
-import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import { connect, useDispatch } from "react-redux";
-import { RootState } from "store";
-// import { getUserProfile } from "store/actions";
+import {  useAppDispatch, useAppSelector } from "store";
+import { openDialog } from "actions";
+import LoginForm from "components/LoginForm";
+import baseURLs from "utility/constants/domain";
+import Btn from "components/customized/Btn";
+import { useMemo } from "react";
 
 
 const useStyle = makeStyles(theme=> ({
@@ -21,28 +22,46 @@ const useStyle = makeStyles(theme=> ({
 }))
 
 const UserInfo: React.FC = () => {
-    const classes = useStyle();
+    const classes = useStyle(),
+    dispatch = useAppDispatch(),
+    { isLogin, userInfo } = useAppSelector( state=> state.user),
     // dispatcher = useDispatch(),
-    // profileImage = useMemo(()=> {
-    //     // return userInfo?.ImageName===null
-    //     // ? (<Avatar className={classes.avatar}><UserIcon fontSize={'1.15rem'} /></Avatar>)
-    //     // : (<Avatar className={classes.avatar} src={`${baseURLs.UserImage}/${userInfo?.ImageName}`} />)
-    // }, [userInfo?.ImageName,classes.avatar]);
+    profileImage = useMemo(()=> {
+        return userInfo?.imageName===null
+        ? (<Avatar className={classes.avatar} />)
+        : (<Avatar className={classes.avatar} src={`${baseURLs.UserImage}/${userInfo?.imageName}`} />)
+    }, [userInfo?.imageName,classes.avatar]);
 
     // useEffect(()=> {
     //     dispatcher(getUserProfile());
     // }, []);
 
+    function showLoginForm() {
+        dispatch(openDialog({
+            title: 'ورود به حساب کاربری',
+            body: <LoginForm />,
+            noAction: true
+        }))
+    }
+
     return ( 
         <Grid container dir='ltr' alignItems='center' className={classes.root} spacing={1}>
-            <Grid item>
-                {/* {profileImage} */}
-            </Grid>
-            <Grid item>
-                <Text variant='body2' fontFamily='"Segoe UI"'>
-                    {/* {userInfo?.UserName} */}
-                </Text>
-            </Grid>
+            {
+                isLogin
+                ? (
+                    <>
+                        <Grid item>
+                            {profileImage}
+                        </Grid>
+                        <Grid item>
+                            <Text variant='body2'>
+                                {`${userInfo?.firstName} ${userInfo?.lastName}`}
+                            </Text>
+                        </Grid>
+                    </>
+                )
+                :<Btn color='primary' onClick={showLoginForm}>ورود به حساب کاربری</Btn>
+            }
         </Grid>
     );
 }

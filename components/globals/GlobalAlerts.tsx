@@ -1,8 +1,8 @@
 import { makeStyles, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
-import { RootState, useAppSelector } from "store";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "store";
 import { closeAlert } from "actions";
 import { IAlertInfo } from "reducers/slices/alertReducer";
 

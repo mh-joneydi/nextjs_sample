@@ -25,7 +25,7 @@ const MobileSideBar: React.FC<MobileSideBarProps> = ({open, onClose}) => {
             anchor="left"
         >
             <div className={classes.MobileDrawer}>
-                <SideBar />
+                <SideBar onClose={onClose as Function} />
             </div>
         </Drawer >
     );

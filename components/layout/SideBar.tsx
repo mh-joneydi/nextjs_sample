@@ -21,7 +21,11 @@ const useStyle = makeStyles( theme=> ({
     }
 }));
 
-const SideBar: React.FC = () => {
+interface ISideBarProps {
+    onClose: Function
+}
+
+const SideBar: React.FC<ISideBarProps> = ({ onClose }) => {
     const classes = useStyle();
     return ( 
         <Grid container direction='column' className={classes.sideBar__Container}>
@@ -32,7 +36,7 @@ const SideBar: React.FC = () => {
             </Grid>
             <Divider light />
             <Grid item className={classes.listContainer}>
-                <SideBarMenu />
+                <SideBarMenu onClose={onClose} />
             </Grid>
         </Grid>
     );

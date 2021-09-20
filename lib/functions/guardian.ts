@@ -1,12 +1,10 @@
 namespace Guardian {
-     const key = (
+     const key = typeof window === 'undefined' ? '1414' : (
          ((new Date()).getTimezoneOffset()/60)+
          window.screen.width+
-         navigator.product+
          window.screen.height+
          navigator.language+
          window.screen.colorDepth+
-         navigator.platform+
          window.screen.pixelDepth+
          navigator.userAgent
     );
