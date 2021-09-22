@@ -7,6 +7,7 @@ import APICall from 'lib/api';
 import { IUserInfo } from 'reducers/slices/userReducer';
 import { setCookie } from 'lib/functions';
 import globalStorage from 'lib/globalStorage';
+import Router from 'next/router'
 
 /******* Alert Action *******/
 
@@ -66,6 +67,7 @@ export const logout = ()=> (dispatch: AppDispatch)=> {
                 url: '/Account/Logout',
             })
             globalStorage.clear();
+            Router.replace('/');
             dispatch({ type: actionTypes.LOGOUT })
         },
         okText: 'بله',

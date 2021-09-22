@@ -114,7 +114,7 @@ const LoginForm: FC<LoginFormProps> = ({ handleSubmit, submitting })=> {
                 </Grid>
             </Grid>
             <Grid item xs={12}> 
-                <Btn loading={submitting} variant='contained' color='primary' fullWidth size='large' type="submit"> 
+                <Btn loading={submitting} variant='contained' color='primary' fullWidth size='large' type="submit" > 
                     ورود 
                 </Btn>
             </Grid>

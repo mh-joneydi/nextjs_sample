@@ -1,5 +1,5 @@
 import { AppBar, IconButton, makeStyles, Toolbar } from "@material-ui/core";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import UserInfo from "./UserInfo";
 
@@ -22,7 +22,7 @@ const useStyle = makeStyles( theme=> ({
 
 const Header: React.FC<HeaderProps> = ({drawerToggler}) => {
     const classes = useStyle();
-    
+
     return (
         <AppBar position="static" color='transparent' elevation={0}>
             <Toolbar variant='dense' disableGutters className={classes.toolbar}>

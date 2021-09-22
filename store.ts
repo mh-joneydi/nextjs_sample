@@ -18,8 +18,10 @@ function initStore(initialState?: PreloadedState<any>) {
 }
 
 function firstInitStore(initialState: PreloadedState<any>) {
-    if(typeof window !== 'undefined' && globalStorage.getItem('USER_TOKEN')) {
-      initialState = { ...initialState,  user: { isLogin: true, userInfo: globalStorage.getItem('USER_INFO') } } 
+    if(typeof window !== 'undefined' ) {
+      globalStorage.getItem('USER_TOKEN')
+      ? initialState = { ...initialState,  user: { isLogin: true, userInfo: globalStorage.getItem('USER_INFO') } } 
+      : globalStorage.clear()
     }
     return initStore(initialState)
 }

@@ -5,7 +5,8 @@ import { openDialog } from "actions";
 import LoginForm from "components/LoginForm";
 import baseURLs from "utility/constants/domain";
 import Btn from "components/customized/Btn";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import Router from 'next/router';
 
 
 const useStyle = makeStyles(theme=> ({
@@ -17,6 +18,7 @@ const useStyle = makeStyles(theme=> ({
         background: alpha(theme.palette.primary.light, 0.4),
         width: 32,
         height: 32,
+        marginRight: theme.spacing(0.75),
         boxShadow: theme.shadows[3]
     }
 }))
@@ -44,13 +46,17 @@ const UserInfo: React.FC = () => {
         }))
     }
 
+    useEffect( function() {
+        isLogin && Router.prefetch('/profile');
+    }, [isLogin] )
+
     return ( 
         <Grid container dir='ltr' alignItems='center' className={classes.root} spacing={1}>
             {
                 isLogin
                 ? (
-                    <>
-                        <Grid item>
+                    <Btn onClick={()=> Router.push('/profile')}>
+                        <Grid item >
                             {profileImage}
                         </Grid>
                         <Grid item>
@@ -58,7 +64,7 @@ const UserInfo: React.FC = () => {
                                 {`${userInfo?.firstName} ${userInfo?.lastName}`}
                             </Text>
                         </Grid>
-                    </>
+                    </Btn>
                 )
                 :<Btn color='primary' onClick={showLoginForm}>ورود به حساب کاربری</Btn>
             }

@@ -1,6 +1,6 @@
 import globalStorageItems from 'utility/constants/globalStorageItems';
 
-type TKey = keyof typeof globalStorageItems;
+type TKey = keyof typeof globalStorageItems ;
 
 namespace globalStorage { 
 

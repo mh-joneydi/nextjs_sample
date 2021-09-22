@@ -58,7 +58,6 @@ const SideBarMenu: React.FC<SideBarMenuProps> = ({ onClose }) => {
     function setLogout() {
         onClose();
         dispatch(logout());
-        Router.replace('/');
     }
 
     return (  
