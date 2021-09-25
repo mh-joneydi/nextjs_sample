@@ -60,7 +60,8 @@ export const login = (loginFormValues: ILoginFormValues) => async(dispatch: AppD
 
 export const logout = ()=> (dispatch: AppDispatch)=> {
     dispatch(openDialog({
-        title: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
+        title: 'خروج',
+        body: 'آیا می خواهید از حساب کاربری خود خارج شوید؟',
         onOk: ()=> {
             APICall({
                 method: 'GET',
@@ -70,10 +71,7 @@ export const logout = ()=> (dispatch: AppDispatch)=> {
             Router.replace('/');
             dispatch({ type: actionTypes.LOGOUT })
         },
-        okText: 'بله',
-        cancelText: 'خیر',
-        okColor: 'error',
-        cancelColor: 'default'
+        okText: 'بله', 
     }))
     
 }

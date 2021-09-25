@@ -31,7 +31,7 @@ const SideBar: React.FC<ISideBarProps> = ({ onClose }) => {
         <Grid container direction='column' className={classes.sideBar__Container}>
             <Grid item container className={classes.sideBar__title} component='header'>
                 <Text startIcon={ <EqualizerRoundedIcon /> } variant='h4' color='common.white'>
-                   پنل مدیریت 
+                    نکست جی اس 
                 </Text>
             </Grid>
             <Divider light />

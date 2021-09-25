@@ -63,7 +63,7 @@ const GlobalDialog: FC = ()=> {
             <DialogActions>
                     <Btn 
                         onClick={dialogInfo?.onCancel?closeFirst(dialogInfo.onCancel):handleClose} 
-                        color={dialogInfo?.cancelColor || 'default'} 
+                        color={dialogInfo?.cancelColor || 'primary'} 
                         size='small'
                     >
                         {dialogInfo?.cancelText || 'لغو'}

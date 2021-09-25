@@ -4,6 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import { combineReducers } from "redux"
 import userReducer from "./slices/userReducer";
 import dialogReducer from './slices/dialogReducer';
+import newsReducer from './slices/newsReducer';
 
 // combined redecucers (Root Reducer)
 const AppReducer = combineReducers ({
@@ -11,6 +12,7 @@ const AppReducer = combineReducers ({
     user: userReducer,
     alert: alertReducer,
     dialog: dialogReducer,
+    news: newsReducer,
 });
 
 // when user logges out store will be cleaned up

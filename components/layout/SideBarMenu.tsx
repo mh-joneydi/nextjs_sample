@@ -1,9 +1,10 @@
 import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core";
 import { memo, useMemo } from "react";
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, useAppSelector } from "store";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "store";
 import { logout } from "actions";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Router from "next/router";
 
 export interface SideBarMenuProps {
@@ -62,6 +63,12 @@ const SideBarMenu: React.FC<SideBarMenuProps> = ({ onClose }) => {
 
     return (  
         <List className={classes.root}>
+            <ListItem button onClick={()=> Router.push('/')} classes={{ selected: classes.selectedItem, button: classes.itemButton }}>
+                <ListItemIcon classes={{ root: classes.listIconRoot }}>
+                    <HomeOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="صفحه اصلی" />
+            </ListItem>
             {
                 isUserLogin&& (
                     <ListItem button onClick={setLogout} classes={{ selected: classes.selectedItem, button: classes.itemButton }}>

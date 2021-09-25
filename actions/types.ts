@@ -6,7 +6,7 @@ enum actionTypes {
     CLEAR_DIALOG_PACK = "CLEAR_DIALOG_PACK",
     CLOSE_DIALOG = "CLOSE_DIALOG",
     OPEN_DIALOG = "OPEN_DIALOG",
-
+    FETCH_NEWS = "FETCH_NEWS",
 }
 
 export default actionTypes;

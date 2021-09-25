@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookie, { getCookie } from 'lib/functions/cookie';
 import cookiesList from 'utility/constants/cookiesList';
 import baseURLs from "utility/constants/domain";
+import { showAlert } from "actions";
 
 interface IResponse<TDataType = any> {
     errorId: number

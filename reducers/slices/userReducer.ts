@@ -22,10 +22,6 @@ interface IUserReducerState {
     userInfo: IUserInfo | null
 }
 
-// export interface IUserLoginPayload {
-//     userInfo?: IUserInfo
-// }
-
 const initialState: IUserReducerState = {
     isLogin: false,
     userInfo: null
