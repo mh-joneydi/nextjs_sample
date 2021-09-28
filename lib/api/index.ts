@@ -1,9 +1,7 @@
 import { dispatch } from "pages/_app";
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import Cookie, { getCookie } from 'lib/functions/cookie';
-import cookiesList from 'utility/constants/cookiesList';
 import baseURLs from "utility/constants/domain";
-import { showAlert } from "actions";
+import globalStorage from "lib/globalStorage";
 
 interface IResponse<TDataType = any> {
     errorId: number
@@ -15,7 +13,7 @@ interface IResponse<TDataType = any> {
 function onRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     return {
         ...config,
-        headers: { Token: getCookie(cookiesList.User)?.Token, ...config.headers }
+        headers: { Token: globalStorage.getItem('USER_TOKEN'), ...config.headers }
     }
 }
 

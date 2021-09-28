@@ -20,7 +20,7 @@ export type TAlertReducerState = Array<IAlertInfo>
 
 type TAlertActions = TAction<actionTypes.SHOW_ALERT, IAlertPayload> | TAction<actionTypes.CLOSE_ALERT>
 
-export default function alertReducer (state: TAlertReducerState = [] , action: TAlertActions) {
+export default function alertReducer (state: TAlertReducerState = [] , action: TAlertActions): TAlertReducerState {
     switch(action.type) {
         case actionTypes.SHOW_ALERT:
             return [...state, { ...action.payload, key: new Date().getTime() }];

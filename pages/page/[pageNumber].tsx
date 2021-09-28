@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
     const paths = [...Array(Math.floor(testingCountAllNews/perPage))].map((item,index)=> ({ params: { pageNumber: String(index+2) } }))
     
     return {
-        paths: paths,
+        paths,
         fallback: false
     }
 }
@@ -44,5 +44,6 @@ export const getStaticProps: GetStaticProps = async function({ params }) {
         props: {
           initialReduxState: { news: mapkeys(news,'newsId') }
         },
+        revalidate: 10
       }
 }
