@@ -16,11 +16,11 @@ const AppReducer = combineReducers ({
 });
 
 // when user logges out store will be cleaned up
-const RootReducer: typeof AppReducer = (state , action) => {   
-    if(action.type === actionTypes.LOGOUT) {
-        return AppReducer(undefined, action);
-    }
-    return AppReducer(state, action);
-};
+// const RootReducer: typeof AppReducer = (state , action) => {   
+//     if(action.type === actionTypes.LOGOUT) {
+//         return AppReducer(undefined, action);
+//     }
+//     return AppReducer(state, action);
+// };
 
-export default RootReducer;
+export default AppReducer;

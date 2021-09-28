@@ -67,9 +67,9 @@ export const logout = ()=> (dispatch: AppDispatch)=> {
                 method: 'GET',
                 url: '/Account/Logout',
             })
-            globalStorage.clear();
-            Router.replace('/');
             dispatch({ type: actionTypes.LOGOUT })
+            globalStorage.clear();
+            Router.push('/');
         },
         okText: 'بله', 
     }))

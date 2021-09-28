@@ -10,6 +10,7 @@ import globalTheme from 'styles/globalTheme';
 import 'styles/fonts.css'
 import GlobalAlerts from 'components/globals/GlobalAlerts';
 import GlobalDialog from 'components/globals/GlobalDialog';
+import globalStorage from 'lib/globalStorage';
 
 let dispatch: AppDispatch;
 
