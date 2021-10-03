@@ -36,8 +36,8 @@ export default function userReducer(state = initialState , action: TUserReducerA
                 isLogin: true,
                 userInfo: action.payload 
             };
-        case actionTypes.LOGOUT:
-            return initialState;
+        // case actionTypes.LOGOUT:
+        //     return initialState;
         default:
             return state;
     }

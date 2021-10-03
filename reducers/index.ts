@@ -15,12 +15,15 @@ const AppReducer = combineReducers ({
     news: newsReducer,
 });
 
-// when user logges out store will be cleaned up
-// const RootReducer: typeof AppReducer = (state , action) => {   
-//     if(action.type === actionTypes.LOGOUT) {
-//         return AppReducer(undefined, action);
-//     }
-//     return AppReducer(state, action);
-// };
+// When the user is logged out store will be cleaned up
+const RootReducer: typeof AppReducer = (state: any , action) => {   
 
-export default AppReducer;
+    // "news" is Home page state that we want to save them from reset stroe when user was logged out
+    if(action.type === actionTypes.LOGOUT) {
+        const { news } = state;
+        state = { news };
+    }
+    return AppReducer(state, action);
+};
+
+export default RootReducer;
