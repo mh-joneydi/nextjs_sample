@@ -9,7 +9,9 @@ function News() {
     // تصور میکنیم که از سرور مقدار کل را گرفته و در استور قرار دادیم
     count = 11,
     router = useRouter(),
-    page = router.query.pageNumber;
+    page = parseInt( router.query.pageNumber as string || '1', 10 );
+
+    console.log(page)
 
     return (
         <div>

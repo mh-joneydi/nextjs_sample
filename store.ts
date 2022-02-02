@@ -1,11 +1,15 @@
 import { useMemo } from 'react'
-import { createStore, applyMiddleware, Store, PreloadedState } from 'redux'
+import { createStore, applyMiddleware, Store, PreloadedState, Dispatch, AnyAction } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 import reducers from 'reducers'
 import actionTypes from 'actions/types'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import globalStorage from 'lib/globalStorage'
+import { TAlertActions } from 'reducers/slices/alertReducer'
+import { TUserReducerActions } from 'reducers/slices/userReducer'
+import { TNewsActions } from 'reducers/slices/newsReducer'
+import { TDialogActions } from 'reducers/slices/dialogReducer'
 
 let store: any;
 
@@ -61,10 +65,18 @@ export type TAction<TActionType extends actionTypes, TActionPayload=void> = TAct
 ? { type: TActionType } 
 : { type: TActionType, payload: TActionPayload }
 
+type RemoveIndex<T> = {
+  [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
+};
+type TStoreDispatch = ReturnType<typeof STORE_INSTANCE.dispatch>;
+// type TValidActions = TStoreDispatch extends any ? RemoveIndex<AnyAction> : never;
+type TValidActions = TUserReducerActions|TAlertActions|TNewsActions|TDialogActions;
+
+
 const STORE_INSTANCE = initStore();
 export type RootState = ReturnType<typeof STORE_INSTANCE.getState>;
-export type AppDispatch = typeof STORE_INSTANCE.dispatch;
-export type TActionCreator = ReturnType<AppDispatch>
+export type AppDispatch = ( action : TValidActions|void )=> void
+export type TActionCreator = TValidActions
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

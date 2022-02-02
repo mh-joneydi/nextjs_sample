@@ -18,7 +18,7 @@ export interface IAlertInfo extends IAlertPayload {
 
 export type TAlertReducerState = Array<IAlertInfo>
 
-type TAlertActions = TAction<actionTypes.SHOW_ALERT, IAlertPayload> | TAction<actionTypes.CLOSE_ALERT>
+export type TAlertActions = TAction<actionTypes.SHOW_ALERT, IAlertPayload> | TAction<actionTypes.CLOSE_ALERT>
 
 export default function alertReducer (state: TAlertReducerState = [] , action: TAlertActions): TAlertReducerState {
     switch(action.type) {

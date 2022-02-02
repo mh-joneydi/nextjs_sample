@@ -17,9 +17,9 @@ export interface INewsDetails {
 export type TNewsReducerState = { [ prop: string]: INewsDetails };
 export type TNewsPayload = INewsDetails[];
 
-type TUserReducerActions = TAction<actionTypes.FETCH_NEWS, TNewsReducerState> ;
+export type TNewsActions = TAction<actionTypes.FETCH_NEWS, TNewsReducerState> ;
 
-export default function newsReducer(state: TNewsReducerState = {} , action: TUserReducerActions): TNewsReducerState {
+export default function newsReducer(state: TNewsReducerState = {} , action: TNewsActions): TNewsReducerState {
     switch(action.type) {
         case actionTypes.FETCH_NEWS:
             return action.payload

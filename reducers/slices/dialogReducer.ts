@@ -30,7 +30,7 @@ const initialState: IDialogReducerState = {
     open: false
 }
 
-type TDialogActions = TAction<actionTypes.OPEN_DIALOG, IDialogPayload> | TAction<actionTypes.CLEAR_DIALOG_PACK> | TAction<actionTypes.CLOSE_DIALOG>
+export type TDialogActions = TAction<actionTypes.OPEN_DIALOG, IDialogPayload> | TAction<actionTypes.CLEAR_DIALOG_PACK> | TAction<actionTypes.CLOSE_DIALOG>
 
 export default function dialogReducer(state = initialState , action: TDialogActions ): IDialogReducerState {
     switch(action.type) {

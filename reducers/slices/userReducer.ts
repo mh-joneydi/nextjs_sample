@@ -27,7 +27,7 @@ const initialState: IUserReducerState = {
     userInfo: null
 }
 
-type TUserReducerActions = TAction<actionTypes.LOGIN, IUserInfo> | TAction<actionTypes.LOGOUT>;
+export type TUserReducerActions = TAction<actionTypes.LOGIN, IUserInfo> | TAction<actionTypes.LOGOUT>;
 
 export default function userReducer(state = initialState , action: TUserReducerActions): IUserReducerState {
     switch(action.type) {
